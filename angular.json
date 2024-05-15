@@ -72,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "alderotrouwt:build:production"
+              "buildTarget": "alderotrouwt:build:production"
             },
             "development": {
-              "browserTarget": "alderotrouwt:build:development"
+              "buildTarget": "alderotrouwt:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "alderotrouwt:build"
+            "buildTarget": "alderotrouwt:build"
           }
         },
         "test": {
