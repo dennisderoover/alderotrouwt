@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: crimson-foam;
+  src: url(assets/fonts/Crimson_Foam_Font.otf) format("opentype");
+}
+
+html, body {
+  background-color: #FEF6E9;
+  color: #945030;
+  font-family: 'Roboto Serif';
+  font-weight: 200;
+  padding: 0;
+  margin: 0;
+}
