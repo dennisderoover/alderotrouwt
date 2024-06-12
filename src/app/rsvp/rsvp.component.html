@@ -1,1 +1,41 @@
-<p>rsvp works!</p>
+<h1 class="title">RSVP</h1>
+
+<p class="subtitle">
+  <span class="bold">
+    Répondez s-il vous plaît
+  </span>
+  <br>
+  Laat ons hier weten of je erbij kan zijn!
+</p>
+
+<form [formGroup]="form">
+  <div class="first-name">
+    <label for="firstName">
+      Voornaam
+    </label>
+    <input
+      #firstName
+      [formControl]="form.controls.firstName"
+      class="aldero-input"
+      type="text"
+    >
+  </div>
+  <div class="last-name">
+    <label for="lastName">
+      Achternaam
+    </label>
+    <input
+      #lastName
+      [formControl]="form.controls.lastName"
+      class="aldero-input"
+      type="text"
+    >
+  </div>
+  <button
+    class="aldero-button primary"
+    [disabled]="form.invalid"
+    (click)="requestInvitation()"
+  >
+    Vind mijn uitnodiging
+  </button>
+</form>

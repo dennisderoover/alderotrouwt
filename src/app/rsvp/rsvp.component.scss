@@ -1,0 +1,42 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.title {
+  position: relative;
+  margin-top: 31px; // adjust for '~the' element
+
+  &::before {
+    content: url('/assets/svgs/the.svg');
+    position: absolute;
+    top: -45px;
+    width: 20px;
+  }
+}
+
+.subtitle {
+  line-height: 1.5;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .first-name,
+  .last-name {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+  }
+}
+
+.bold {
+  font-weight: bold;
+}

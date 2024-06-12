@@ -9,10 +9,58 @@ html, body {
   color: #945030;
   font-family: 'Roboto Serif';
   font-weight: 200;
+  font-size: 12px;
   padding: 0;
   margin: 0;
+
+  p {
+    font-size: 12px;
+    margin: 0;
+  }
+
+  h1 {
+    font-size: 40px;
+    font-weight: 300;
+    margin: 0;
+  }
 }
 
 * {
   box-sizing: border-box;
+}
+
+.aldero-button {
+  appearance: none;
+  border: none;
+  font-family: 'Roboto Serif';
+  font-size: 14px;
+  padding: 14px 20px;
+
+  &.primary {
+    background-color: #945030;
+    color: #FEF6E9;
+  }
+  
+  &.secondary {
+    background-color: #FEF6E9;
+    border: solid 1px #945030;
+    color: #945030;
+  }
+  
+  &:disabled {
+    background-color: #945030;
+    color: #FEF6E9;
+    opacity: 0.3;
+  }
+}
+
+.aldero-input {
+  appearance: none;
+  background: #FEF6E9;
+  border: solid 1px #945030;
+  color: #945030;
+  font-family: 'Roboto Serif';
+  font-size: 12px;
+  outline: none;
+  padding: 14px;
 }
