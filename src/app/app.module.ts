@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { NavComponent } from './nav/nav.component';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { GoogleMapsModule } from '@angular/google-maps';
     AppRoutingModule,
     NavComponent,
     BrowserAnimationsModule,
-    GoogleMapsModule
+    GoogleMapsModule,
+    HttpClientModule
   ],
   exports: [],
   declarations: [AppComponent],

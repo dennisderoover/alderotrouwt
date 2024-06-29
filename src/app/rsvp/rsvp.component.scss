@@ -4,6 +4,12 @@
   gap: 20px;
 }
 
+section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .title {
   position: relative;
   margin-top: 31px; // adjust for '~the' element
