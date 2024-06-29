@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://api.alderotrouwt.be',
+  apiUrl: 'https://alderotrouwt-be.onrender.com',
 };

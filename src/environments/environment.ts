@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://api.alderotrouwt.be',
+  apiUrl: 'https://alderotrouwt-be.onrender.com',
 };
 
 /*
