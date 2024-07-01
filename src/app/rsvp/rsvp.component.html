@@ -43,7 +43,150 @@
   </form>
 </section>
 
-<section *ngIf="showStepOne && !isLoading">
-  <p style="font-weight: bold;">Selected Household:</p>
-  <p *ngFor="let guest of rsvpService.currentHousehold">{{ guest.firstName }} {{ guest.lastName }}</p>
+<!-- ANTWERP -->
+<section *ngIf="showAntwerp && !isLoading">
+  <div class="event-header">
+    <p class="subtitle">
+      <span class="bold">
+        Burgerlijke trouw
+      </span>
+      <br>
+      Stadhuis Antwerpen
+    </p>
+    <p class="timeslot">11u00</p>
+  </div>
+
+  <div class="selection" *ngFor="let guest of rsvpService.currentHousehold">
+    <p class="bold">{{ guest.firstName }} {{ guest.lastName }}</p>
+    <div class="selection-btns">
+      <button
+        class="aldero-button"
+        [ngClass]="[guestIsComing(eActivity.ANTWERP, guest) ? 'primary' : 'secondary']"
+        (click)="selectAnswer(eActivity.ANTWERP, eSelectionAnswer.COMING, guest)"
+      >Ik kom</button>
+      <button
+        class="aldero-button"
+        [ngClass]="[guestIsNotComing(eActivity.ANTWERP, guest) ? 'primary' : 'secondary']"
+        (click)="selectAnswer(eActivity.ANTWERP, eSelectionAnswer.NOT_COMING, guest)"
+      >Ik kom niet</button>
+    </div>
+  </div>
+
+  <button
+    class="aldero-button primary"
+    [disabled]="!submitStepEnabled(eActivity.ANTWERP)"
+    (click)="submitAnswers(eActivity.ANTWERP)"
+  >Ga verder</button>
 </section>
+<!-- END ANTWERP -->
+
+<!-- CEREMONY -->
+<section *ngIf="showCeremony && !isLoading">
+  <div class="event-header">
+    <p class="subtitle">
+      <span class="bold">
+        Ceremonie en Receptie
+      </span>
+      <br>
+      Hof Van Riemen
+    </p>
+    <p class="timeslot">15u00 tot 19u00</p>
+  </div>
+
+  <div class="selection" *ngFor="let guest of rsvpService.currentHousehold">
+    <p class="bold">{{ guest.firstName }} {{ guest.lastName }}</p>
+    <div class="selection-btns">
+      <button
+        class="aldero-button"
+        [ngClass]="[guestIsComing(eActivity.CEREMONY, guest) ? 'primary' : 'secondary']"
+        (click)="selectAnswer(eActivity.CEREMONY, eSelectionAnswer.COMING, guest)"
+      >Ik kom</button>
+      <button
+        class="aldero-button"
+        [ngClass]="[guestIsNotComing(eActivity.CEREMONY, guest) ? 'primary' : 'secondary']"
+        (click)="selectAnswer(eActivity.CEREMONY, eSelectionAnswer.NOT_COMING, guest)"
+      >Ik kom niet</button>
+    </div>
+  </div>
+
+  <button
+    class="aldero-button primary"
+    [disabled]="!submitStepEnabled(eActivity.CEREMONY)"
+    (click)="submitAnswers(eActivity.CEREMONY)"
+  >Ga verder</button>
+</section>
+<!-- END ANTWERP -->
+
+<!-- DINER -->
+<section *ngIf="showDiner && !isLoading">
+  <div class="event-header">
+    <p class="subtitle">
+      <span class="bold">
+        Diner
+      </span>
+      <br>
+      Hof Van Riemen
+    </p>
+    <p class="timeslot">19u00 tot 21u00</p>
+  </div>
+
+  <div class="selection" *ngFor="let guest of rsvpService.currentHousehold">
+    <p class="bold">{{ guest.firstName }} {{ guest.lastName }}</p>
+    <div class="selection-btns">
+      <button
+        class="aldero-button"
+        [ngClass]="[guestIsComing(eActivity.DINER, guest) ? 'primary' : 'secondary']"
+        (click)="selectAnswer(eActivity.DINER, eSelectionAnswer.COMING, guest)"
+      >Ik kom</button>
+      <button
+        class="aldero-button"
+        [ngClass]="[guestIsNotComing(eActivity.DINER, guest) ? 'primary' : 'secondary']"
+        (click)="selectAnswer(eActivity.DINER, eSelectionAnswer.NOT_COMING, guest)"
+      >Ik kom niet</button>
+    </div>
+  </div>
+
+  <button
+    class="aldero-button primary"
+    [disabled]="!submitStepEnabled(eActivity.DINER)"
+    (click)="submitAnswers(eActivity.DINER)"
+  >Ga verder</button>
+</section>
+<!-- END DINER -->
+
+<!-- PARTY -->
+<section *ngIf="showParty && !isLoading">
+  <div class="event-header">
+    <p class="subtitle">
+      <span class="bold">
+        Party Time
+      </span>
+      <br>
+      Hof Van Riemen
+    </p>
+    <p class="timeslot">21u00</p>
+  </div>
+
+  <div class="selection" *ngFor="let guest of rsvpService.currentHousehold">
+    <p class="bold">{{ guest.firstName }} {{ guest.lastName }}</p>
+    <div class="selection-btns">
+      <button
+        class="aldero-button"
+        [ngClass]="[guestIsComing(eActivity.PARTY, guest) ? 'primary' : 'secondary']"
+        (click)="selectAnswer(eActivity.PARTY, eSelectionAnswer.COMING, guest)"
+      >Ik kom</button>
+      <button
+        class="aldero-button"
+        [ngClass]="[guestIsNotComing(eActivity.PARTY, guest) ? 'primary' : 'secondary']"
+        (click)="selectAnswer(eActivity.PARTY, eSelectionAnswer.NOT_COMING, guest)"
+      >Ik kom niet</button>
+    </div>
+  </div>
+
+  <button
+    class="aldero-button primary"
+    [disabled]="!submitStepEnabled(eActivity.PARTY)"
+    (click)="submitAnswers(eActivity.PARTY)"
+  >Ga verder</button>
+</section>
+<!-- END PARTY -->
