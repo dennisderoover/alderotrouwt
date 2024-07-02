@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable, map, startWith, tap } from 'rxjs';
-import { Credentials, Guest, LoadingState } from './rsvp.interfaces';
+import { Attendance, Credentials, Guest, LoadingState } from './rsvp.interfaces';
 import { environment } from 'src/environments/environment';
 
 @Injectable({providedIn: 'root'})
@@ -27,5 +27,14 @@ export class RSVPService {
       tap((result: LoadingState<Guest[]>) => this._currentHousehold = result.data),
       startWith({ error: null, loading: true }),
     );
+  }
+
+  public submitAttendances(attendances: Attendance[]): Observable<LoadingState<string>> {
+    const url = `${environment.apiUrl}/submit`;
+
+    return this._httpClient.post<string>(url, attendances).pipe(
+      map((result: string) => ({ data: result, loading: false})),
+      startWith({ error: null, loading: true}),
+    )
   }
 }

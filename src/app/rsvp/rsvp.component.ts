@@ -6,6 +6,10 @@ import { RouterModule } from '@angular/router';
 import { tap } from 'rxjs';
 import { Activity, Attendance, Credentials, Guest, LoadingState, SelectionAnswer } from './rsvp.interfaces';
 import { RSVPService } from './rsvp.service';
+import {
+  PageTitleComponent,
+  SubtitleComponent
+} from '../shared'
 
 @Component({
   selector: 'aldero-rsvp',
@@ -15,6 +19,8 @@ import { RSVPService } from './rsvp.service';
     RouterModule,
     ReactiveFormsModule,
     HttpClientModule,
+    PageTitleComponent,
+    SubtitleComponent,
   ],
   templateUrl: './rsvp.component.html',
   styleUrls: ['./rsvp.component.scss'],
@@ -23,11 +29,12 @@ export class RSVPComponent {
   public rsvpService = inject(RSVPService);
 
   public isLoading = false;
-  public showStepZero = true;
+  public showInput = true;
   public showAntwerp = false;
   public showCeremony = false;
   public showDiner = false;
   public showParty = false;
+  public showEnd = false;
   public eSelectionAnswer = SelectionAnswer;
   public eActivity = Activity;
   public form = new FormGroup({
@@ -59,7 +66,7 @@ export class RSVPComponent {
               guest: guest
             }))
 
-            this.showStepZero = false;
+            this.showInput = false;
 
             if (currentHousehold.find((guest: Guest) => guest.invitedFor.includes(Activity.ANTWERP))) {
               this.showAntwerp = true;
@@ -169,16 +176,25 @@ export class RSVPComponent {
         return this.goToNextActivity(Activity.PARTY);
       }
 
-      // TODO: persist these answers to Google Sheet
-      console.log('persist these answers:', this.attendances)
+      this.rsvpService.submitAttendances(this.attendances)
+        .pipe(
+          tap((result: LoadingState<string>) => this.isLoading = result.loading),
+          tap(() => {
+            if (!this.isLoading) {
+              this.goToNextActivity()
+            }
+          })
+        )
+        .subscribe();
     }
   }
 
-  private goToNextActivity(activity: Activity): void {
+  private goToNextActivity(activity?: Activity): void {
     this.showAntwerp = Activity.ANTWERP === activity;
     this.showCeremony = Activity.CEREMONY === activity;
     this.showDiner = Activity.DINER === activity;
     this.showParty = Activity.PARTY === activity;
+    this.showEnd = !activity;
   }
 
   public submitStepEnabled(activity: Activity): boolean {

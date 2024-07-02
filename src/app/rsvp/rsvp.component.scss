@@ -10,22 +10,6 @@ section {
   gap: 30px;
 }
 
-.title {
-  position: relative;
-  margin-top: 31px; // adjust for '~the' element
-
-  &::before {
-    content: url('/assets/svgs/the.svg');
-    position: absolute;
-    top: -45px;
-    width: 20px;
-  }
-}
-
-.subtitle {
-  line-height: 1.5;
-}
-
 .event-header {
   display: flex;
   justify-content: space-between;
@@ -62,8 +46,4 @@ form {
       margin-bottom: 4px;
     }
   }
-}
-
-.bold {
-  font-weight: bold;
 }
