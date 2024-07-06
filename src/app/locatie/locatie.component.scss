@@ -1,5 +1,30 @@
 :host {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 70px;
+}
+
+google-map {
+  position: relative;
+}
+
+.address-top-left,
+.address-bottom-right {
+  position: absolute;
+  background: #945030;
+  padding: 10px;
+  color: #FEF6E9;
+  font-size: 0.8rem;
+  width: 190px;
+}
+
+.address-top-left {
+  top: -39.5px;
+  left: -15px;
+}
+
+.address-bottom-right {
+  bottom: -39.5px;
+  right: -15px;
+  text-align: right;
 }

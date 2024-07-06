@@ -16,10 +16,8 @@ export class AppComponent implements OnInit {
       if (event instanceof RoutesRecognized) {
         if (event.url === '/' || event.url === '/home') {
           this.navTransparant = true;
-          console.log(this.navTransparant)
         } else {
           this.navTransparant = false;
-          console.log(this.navTransparant)
         }
       }
     })

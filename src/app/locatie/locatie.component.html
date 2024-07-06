@@ -1,6 +1,24 @@
 <aldero-page-title pageTitle="LOCATION"></aldero-page-title>
 
-<aldero-subtitle
-  title="Hof Van Riemen"
-  subtitle="Orshagenstraat 11, 2220 Heist-op-den-Berg"
-></aldero-subtitle>
+<google-map height="325px" width="100%" [options]="options">
+  @for (location of locations; track location) {
+    <map-advanced-marker
+      #markerElem="mapAdvancedMarker"
+      [position]="{ lat: location.lat, lng: location.lng}"
+      [content]="location.marker"
+    />
+  }
+  <div class="address-top-left">
+    <p>
+      <span class="bold">Stadhuis</span><br>
+      Grote Markt<br>2000 Antwerpen
+    </p>
+  </div>
+  <div class="address-bottom-right">
+    <p>
+      <span class="bold">Hof Van Riemen</span><br>
+      Orshagenstraat 11<br>
+      2220 Heist-op-den-Berg
+    </p>
+  </div>
+</google-map>
