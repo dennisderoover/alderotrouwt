@@ -15,6 +15,7 @@ html, body {
 
   p {
     font-size: 14px;
+    line-height: 1.4rem;
     margin: 0;
   }
 
@@ -41,16 +42,24 @@ html, body {
     color: #FEF6E9;
   }
   
-  &.secondary {
-    background-color: #FEF6E9;
+  &.outlined-primary {
+    background-color: transparent;
     border: solid 1px #945030;
     color: #945030;
   }
+
+  &.outlined-secondary {
+    background-color: transparent;
+    border: solid 1px #FEF6E9;
+    color: #FEF6E9;
+  }
   
   &:disabled {
-    background-color: #945030;
-    color: #FEF6E9;
     opacity: 0.3;
+  }
+
+  &:hover {
+    cursor: pointer;
   }
 }
 

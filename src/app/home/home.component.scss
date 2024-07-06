@@ -1,3 +1,42 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
 img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+.welcome {
+  background-color: #945030;
+  color: #FEF6E9;
+  margin-top: 270px;
+  padding: 30px 20px 20px;
+  text-align: center;
+  z-index: 1;
+
+  i {
+    font-size: 18px;
+  }
+
+  .title {
+    font-family: 'Crimson Foam', serif;
+    font-size: 64px;
+    margin-top: -15px;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px 0 20px;
+  }
+}
+
+.aldero-button {
   width: 100%;
 }

@@ -1,6 +1,0 @@
-<i class="fa-solid fa-bars" *ngIf="!isMobileMenuOpen" (click)="openMobileMenu()"></i>
-<i class="fa-regular fa-circle-xmark" *ngIf="isMobileMenuOpen" (click)="closeMobileMenu()"></i>
-
-<div class="mobile-menu" *ngIf="isMobileMenuOpen" [@menu]>
-  <a class="menu-item" *ngFor="let navItem of navItems" (click)="navigate(navItem)">{{ navItem | uppercase }}</a>
-</div>

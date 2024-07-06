@@ -34,9 +34,12 @@ export class RSVPComponent {
   public showCeremony = false;
   public showDiner = false;
   public showParty = false;
-  public showEnd = false;
+  public showEndComing = false;
+  public showEndNotComing = false;
+
   public eSelectionAnswer = SelectionAnswer;
   public eActivity = Activity;
+
   public form = new FormGroup({
     firstName: new FormControl('', {
       validators: Validators.required,
@@ -47,6 +50,7 @@ export class RSVPComponent {
       nonNullable: true,
     })
   })
+
   public attendances: Attendance[] = [];
 
   public requestInvitation(): void {
@@ -194,7 +198,20 @@ export class RSVPComponent {
     this.showCeremony = Activity.CEREMONY === activity;
     this.showDiner = Activity.DINER === activity;
     this.showParty = Activity.PARTY === activity;
-    this.showEnd = !activity;
+
+    if (
+      !activity &&
+      this.attendances.find((attendance: Attendance) => 
+        attendance.antwerp === SelectionAnswer.COMING ||
+        attendance.ceremony === SelectionAnswer.COMING ||
+        attendance.diner === SelectionAnswer.COMING ||
+        attendance.party === SelectionAnswer.COMING
+      )
+    ) {
+      this.showEndComing = true;
+    } else if (!activity) {
+      this.showEndNotComing = true;
+    }
   }
 
   public submitStepEnabled(activity: Activity): boolean {

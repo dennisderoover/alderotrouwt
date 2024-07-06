@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { MenuAnimation } from '../animations';
+import { MenuAnimation } from './animations';
 
 @Component({
   selector: 'aldero-nav',
@@ -15,6 +15,7 @@ import { MenuAnimation } from '../animations';
   animations: [MenuAnimation]
 })
 export class NavComponent {
+  @Input() navTransparant!: boolean
   public navItems = [
     'home',
     'dresscode',
@@ -23,7 +24,8 @@ export class NavComponent {
     'rsvp',
   ];
   public isMobileMenuOpen = false;
-  public router = inject(Router);
+  private router = inject(Router);
+
 
   public navigate(navItem: string): void {
     this.isMobileMenuOpen = false;

@@ -55,12 +55,12 @@
     <div class="selection-btns">
       <button
         class="aldero-button"
-        [ngClass]="[guestIsComing(eActivity.ANTWERP, guest) ? 'primary' : 'secondary']"
+        [ngClass]="[guestIsComing(eActivity.ANTWERP, guest) ? 'primary' : 'outlined-primary']"
         (click)="selectAnswer(eActivity.ANTWERP, eSelectionAnswer.COMING, guest)"
       >Ik kom</button>
       <button
         class="aldero-button"
-        [ngClass]="[guestIsNotComing(eActivity.ANTWERP, guest) ? 'primary' : 'secondary']"
+        [ngClass]="[guestIsNotComing(eActivity.ANTWERP, guest) ? 'primary' : 'outlined-primary']"
         (click)="selectAnswer(eActivity.ANTWERP, eSelectionAnswer.NOT_COMING, guest)"
       >Ik kom niet</button>
     </div>
@@ -92,12 +92,12 @@
     <div class="selection-btns">
       <button
         class="aldero-button"
-        [ngClass]="[guestIsComing(eActivity.CEREMONY, guest) ? 'primary' : 'secondary']"
+        [ngClass]="[guestIsComing(eActivity.CEREMONY, guest) ? 'primary' : 'outlined-primary']"
         (click)="selectAnswer(eActivity.CEREMONY, eSelectionAnswer.COMING, guest)"
       >Ik kom</button>
       <button
         class="aldero-button"
-        [ngClass]="[guestIsNotComing(eActivity.CEREMONY, guest) ? 'primary' : 'secondary']"
+        [ngClass]="[guestIsNotComing(eActivity.CEREMONY, guest) ? 'primary' : 'outlined-primary']"
         (click)="selectAnswer(eActivity.CEREMONY, eSelectionAnswer.NOT_COMING, guest)"
       >Ik kom niet</button>
     </div>
@@ -129,12 +129,12 @@
     <div class="selection-btns">
       <button
         class="aldero-button"
-        [ngClass]="[guestIsComing(eActivity.DINER, guest) ? 'primary' : 'secondary']"
+        [ngClass]="[guestIsComing(eActivity.DINER, guest) ? 'primary' : 'outlined-primary']"
         (click)="selectAnswer(eActivity.DINER, eSelectionAnswer.COMING, guest)"
       >Ik kom</button>
       <button
         class="aldero-button"
-        [ngClass]="[guestIsNotComing(eActivity.DINER, guest) ? 'primary' : 'secondary']"
+        [ngClass]="[guestIsNotComing(eActivity.DINER, guest) ? 'primary' : 'outlined-primary']"
         (click)="selectAnswer(eActivity.DINER, eSelectionAnswer.NOT_COMING, guest)"
       >Ik kom niet</button>
     </div>
@@ -166,12 +166,12 @@
     <div class="selection-btns">
       <button
         class="aldero-button"
-        [ngClass]="[guestIsComing(eActivity.PARTY, guest) ? 'primary' : 'secondary']"
+        [ngClass]="[guestIsComing(eActivity.PARTY, guest) ? 'primary' : 'outlined-primary']"
         (click)="selectAnswer(eActivity.PARTY, eSelectionAnswer.COMING, guest)"
       >Ik kom</button>
       <button
         class="aldero-button"
-        [ngClass]="[guestIsNotComing(eActivity.PARTY, guest) ? 'primary' : 'secondary']"
+        [ngClass]="[guestIsNotComing(eActivity.PARTY, guest) ? 'primary' : 'outlined-primary']"
         (click)="selectAnswer(eActivity.PARTY, eSelectionAnswer.NOT_COMING, guest)"
       >Ik kom niet</button>
     </div>
@@ -188,7 +188,7 @@
 </section>
 <!-- END PARTY -->
 
-<section *ngIf="showEnd">
+<section *ngIf="showEndComing">
   <aldero-subtitle
     title="Bedankt voor het invullen!"
     subtitle="We kijken uit naar je komst."
@@ -199,5 +199,19 @@
     [routerLink]="['/locatie']"
   >
     Waar is dat feestje?
+  </button>
+</section>
+
+<section *ngIf="showEndNotComing">
+  <aldero-subtitle
+    title="Bedankt voor het invullen!"
+    subtitle="Jammer dat je er niet bij kan zijn."
+  ></aldero-subtitle>
+
+  <button
+    class="aldero-button primary"
+    [routerLink]="['/home']"
+  >
+    Terug naar begin
   </button>
 </section>

@@ -1,0 +1,47 @@
+.nav-wrapper {
+  background-color: #945030;
+  padding: 30px;
+  width: 100%;
+  color: #FEF6E9;
+  display: flex;
+  font-size: 1.7rem;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+
+  i:hover,
+  a:hover {
+    cursor: pointer;
+  }
+  
+  &.transparant {
+    background-color: transparent;
+  }
+}
+
+.icon {
+  z-index: 1;
+}
+
+.mobile-menu {
+  background-color: #945030;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+
+  a {
+    padding: 0 30px;
+  }
+
+  a:first-child {
+    padding-top: 84px; // extra padding for height of navigation bar
+  }
+
+  a:last-child {
+    padding-bottom: 30px;
+  }
+}

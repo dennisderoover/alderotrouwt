@@ -1,0 +1,8 @@
+<div class="nav-wrapper" [ngClass]="{ 'transparant': navTransparant }">
+  <i class="icon fa-solid fa-bars" *ngIf="!isMobileMenuOpen" (click)="openMobileMenu()"></i>
+  <i class="icon fa-regular fa-circle-xmark" *ngIf="isMobileMenuOpen" (click)="closeMobileMenu()"></i>
+
+  <div class="mobile-menu" *ngIf="isMobileMenuOpen" [@menu]>
+    <a class="menu-item" *ngFor="let navItem of navItems" (click)="navigate(navItem)">{{ navItem | uppercase }}</a>
+  </div>
+</div>
