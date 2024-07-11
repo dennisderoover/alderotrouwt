@@ -13,6 +13,10 @@
       <span class="bold">Stadhuis</span><br>
       Grote Markt<br>2000 Antwerpen
     </p>
+    <i
+      class="fa-solid fa-diamond-turn-right"
+      (click)="getDirections(eDestionation.ANTWERP)"
+    ></i>
   </div>
   <div class="address-bottom-right">
     <p>
@@ -20,5 +24,24 @@
       Orshagenstraat 11<br>
       2220 Heist-op-den-Berg
     </p>
+    <i
+      class="fa-solid fa-diamond-turn-right"
+      (click)="getDirections(eDestionation.ANTWERP)"
+    ></i>
   </div>
 </google-map>
+
+<aldero-subtitle
+  title="Hof Van Riemen"
+></aldero-subtitle>
+
+<ngx-slick-carousel class="carousel" 
+  #slickModal="slick-carousel" 
+  [config]="slideConfig"
+>
+  @for (image of images; track image.src) {
+    <div ngxSlickItem class="slide">
+      <img src="{{ image.src }}" width="100%">
+    </div>
+  }
+</ngx-slick-carousel>

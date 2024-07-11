@@ -2,8 +2,15 @@ import { Component } from '@angular/core';
 import { PageTitleComponent } from '../shared/page-title/page-title.component';
 import { SubtitleComponent } from '../shared';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { CommonModule } from '@angular/common';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 const mapId = '864a1405d36d9f6';
+
+enum Destination {
+  ANTWERP,
+  HOF_VAN_RIEMEN
+}
 
 interface Location {
   lat: number,
@@ -18,6 +25,8 @@ interface Location {
     PageTitleComponent,
     SubtitleComponent,
     GoogleMapsModule,
+    CommonModule,
+    SlickCarouselModule,
   ],
   templateUrl: './locatie.component.html',
   styleUrl: './locatie.component.scss'
@@ -30,6 +39,26 @@ export class LocatieComponent {
     disableDefaultUI: true,
   };
   public locations: Location[];
+  public eDestionation = Destination;
+  public images = [
+    { src: 'assets/images/driem-0.jpeg' },
+    { src: 'assets/images/driem-1.jpeg' },
+    { src: 'assets/images/driem-2.jpeg' },
+    { src: 'assets/images/driem-3.jpeg' },
+  ]
+  public slideConfig = {
+    'arrows': true,
+    'prevArrow': `
+      <i class="fa-solid fa-circle-chevron-left previous"></i>
+    `,
+    'nextArrow': `
+      <i class="fa-solid fa-circle-chevron-right next"></i>
+    `,
+    'adaptiveHeight': true,
+    'slidesToShow': 1,
+    'slidesToScroll': 1,
+    'dots': true,
+  };
 
   constructor() {
     const parser = new DOMParser();
@@ -48,5 +77,19 @@ export class LocatieComponent {
         marker: parser.parseFromString(svgString, "image/svg+xml").documentElement
       },
     ]
+  }
+
+  public getDirections(destination: Destination): void {
+    let url;
+
+    switch (destination) {
+      case Destination.ANTWERP:
+        url = 'https://www.google.com/maps/dir//Stadhuis%20Antwerpen';
+        break;
+      case Destination.HOF_VAN_RIEMEN:
+        url = 'https://www.google.com/maps/dir//Hof%20Van%20Riemen'
+    }
+
+    window.open(url, "_blank");
   }
 }
