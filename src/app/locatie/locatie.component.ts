@@ -45,6 +45,7 @@ export class LocatieComponent {
     { src: 'assets/images/driem-1.jpeg' },
     { src: 'assets/images/driem-2.jpeg' },
     { src: 'assets/images/driem-3.jpeg' },
+    { src: 'assets/images/driem-4.jpeg' },
   ]
   public slideConfig = {
     'arrows': true,
@@ -87,7 +88,8 @@ export class LocatieComponent {
         url = 'https://www.google.com/maps/dir//Stadhuis%20Antwerpen';
         break;
       case Destination.HOF_VAN_RIEMEN:
-        url = 'https://www.google.com/maps/dir//Hof%20Van%20Riemen'
+        url = 'https://www.google.com/maps/dir//Hof%20Van%20Riemen';
+        break;
     }
 
     window.open(url, "_blank");
