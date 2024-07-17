@@ -1,1 +1,18 @@
 <aldero-page-title pageTitle="CADEAU"></aldero-page-title>
+
+<aldero-subtitle
+  [title]="title"
+  [subtitle]="subtitle"
+></aldero-subtitle>
+
+<p>Dit mag op onderstaand rekeningnummer:</p>
+
+<div class="gift-container">
+  <i class="fa-solid fa-piggy-bank"></i>
+  <p class="bank-account" (click)="copyToClipboard()">
+    BE44 1431 1236 8945
+    <span class="copy-tooltip">Kopieer rekeningnummer</span>
+  </p>
+  <p>of</p>
+  <i class="fa-regular fa-envelope"></i>
+</div>

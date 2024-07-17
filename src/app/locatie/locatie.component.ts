@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { PageTitleComponent } from '../shared/page-title/page-title.component';
 import { SubtitleComponent } from '../shared';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { CommonModule } from '@angular/common';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { DetectDeviceService } from '../shared/services/detect-device.service';
 
 const mapId = '864a1405d36d9f6';
 
@@ -32,12 +33,22 @@ interface Location {
   styleUrl: './locatie.component.scss'
 })
 export class LocatieComponent {
-  public options: google.maps.MapOptions = {
-    mapId: mapId,
-    center: { lat: 51.160, lng: 4.571 },
-    zoom: 10,
-    disableDefaultUI: true,
-  };
+  public detectDeviceService = inject(DetectDeviceService);
+  public options: google.maps.MapOptions = 
+  this.detectDeviceService.isMobileDevice ? 
+    {
+      mapId: mapId,
+      center: { lat: 51.160, lng: 4.571 },
+      zoom: 10,
+      disableDefaultUI: true,
+    }
+  :
+    {
+      mapId: mapId,
+      center: { lat: 51.145, lng: 4.565 },
+      zoom: 11,
+      disableDefaultUI: true,
+    }
   public locations: Location[];
   public eDestionation = Destination;
   public images = [
@@ -55,7 +66,7 @@ export class LocatieComponent {
     'nextArrow': `
       <i class="fa-solid fa-circle-chevron-right next"></i>
     `,
-    'adaptiveHeight': true,
+    'mobileFirst': true,
     'slidesToShow': 1,
     'slidesToScroll': 1,
     'dots': true,

@@ -15,8 +15,8 @@ import { SubtitleComponent } from '../shared';
 export class DresscodeComponent {
   public readonly title = 'Dresscode inspiratie';
   public readonly subtitle = `
-    Het thema van onze trouw zal ‘aardse kleuren’ zijn.
-    Hieronder enkele foto’s en een kleurpalette ter inspiratie voor je feestoutfit. 
+    Het thema van onze trouw is ‘aardse kleuren’.
+    Hieronder enkele foto’s en een kleurpalet ter inspiratie voor je feestoutfit. 
     Zeker niet verplicht, maar altijd fijn als je mee in het plaatje past!
   `
 }

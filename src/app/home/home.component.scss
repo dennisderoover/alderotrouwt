@@ -40,3 +40,43 @@ img {
 .aldero-button {
   width: 100%;
 }
+
+@media only screen and (min-width: 992px) {
+  .image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 75%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+
+    img {
+      position: unset;
+      width: auto;
+    }
+  }
+
+  .welcome {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    right: 140px;
+    transform: translateY(-50%);
+    width: 576px;
+    padding: 30px;
+
+    i {
+      font-size: 40px;
+    }
+
+    .title {
+      font-size: 113px;
+    }
+
+    .content {
+      margin: 40px 0;
+    }
+  }
+}

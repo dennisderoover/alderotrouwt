@@ -1,6 +1,6 @@
 <aldero-page-title pageTitle="LOCATION"></aldero-page-title>
 
-<google-map height="325px" width="100%" [options]="options">
+<google-map [height]="detectDeviceService.isMobileDevice ? '325px' : '632px'" width="100%" [options]="options">
   @for (location of locations; track location) {
     <map-advanced-marker
       #markerElem="mapAdvancedMarker"

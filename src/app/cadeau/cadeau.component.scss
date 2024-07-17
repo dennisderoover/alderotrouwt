@@ -1,0 +1,58 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.gift-container {
+  background-color: #945030;
+  color: #FEF6E9;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+
+  p {
+    font-size: 16px;
+  }
+
+  i {
+    font-size: 30px;
+  }
+
+  .bank-account {
+    position: relative;
+    display: inline-block;
+
+    .copy-tooltip {
+      visibility: hidden;
+      background-color: #FEF6E9;
+      width: 150px;
+      color: #945030;
+      text-align: center;
+      padding: 5px;
+      position: absolute;
+      z-index: 1;
+      top: 120%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.7rem;
+      border: #945030 1px solid;
+      
+      /* Fade in tooltip - takes 1 second to go from 0% to 100% opac: */
+      opacity: 0;
+      transition: opacity 200ms;
+    }
+  }
+
+  .bank-account:hover {
+    cursor: pointer;
+
+    .copy-tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}

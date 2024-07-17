@@ -1,4 +1,4 @@
-.nav-wrapper {
+.mobile-nav-wrapper {
   background-color: #945030;
   padding: 30px;
   width: 100%;
@@ -10,7 +10,7 @@
   z-index: 999;
 
   i:hover,
-  a:hover {
+  .menu-item:hover {
     cursor: pointer;
   }
   
@@ -33,15 +33,72 @@
   left: 0;
   top: 0;
 
-  a {
+  .menu-item {
     padding: 0 30px;
   }
 
-  a:first-child {
+  .menu-item:first-child {
     padding-top: 84px; // extra padding for height of navigation bar
   }
 
-  a:last-child {
+  .menu-item:last-child {
     padding-bottom: 30px;
+  }
+}
+
+.desktop-nav-wrapper {
+  z-index: 999;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(40% - 60px);
+  padding: 30px 0 18px 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 24px;
+  color: #945030;
+
+  &.color-white {
+    color: #FEF6E9;
+
+    .menu-item.active::after {
+      background-color: #FEF6E9;
+    }
+  }
+
+  .menu-item:hover {
+    cursor: pointer;
+  }
+
+  .menu-item::after {
+    content: '';
+    display: flex;
+    height: 2px;
+    width: 0;
+    background-color: #945030;
+    margin: 10px 15%;
+  }
+
+  .menu-item.active::after {
+    animation: underline-animated-enter 200ms forwards;
+  }
+}
+
+@keyframes underline-animated-enter {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 70%;
+  }
+}
+
+@keyframes underline-animated-leave {
+  0% {
+    width: 70%;
+  }
+  100% {
+    width: 0;
   }
 }

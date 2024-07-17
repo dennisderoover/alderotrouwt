@@ -1,8 +1,19 @@
-<div class="nav-wrapper" [ngClass]="{ 'transparant': navTransparant }">
-  <i class="icon fa-solid fa-bars" *ngIf="!isMobileMenuOpen" (click)="openMobileMenu()"></i>
-  <i class="icon fa-regular fa-circle-xmark" *ngIf="isMobileMenuOpen" (click)="closeMobileMenu()"></i>
-
-  <div class="mobile-menu" *ngIf="isMobileMenuOpen" [@menu]>
-    <a class="menu-item" *ngFor="let navItem of navItems" (click)="navigate(navItem)">{{ navItem | uppercase }}</a>
+@if (detectDevicetService.isMobileDevice) {
+  <div class="mobile-nav-wrapper" [ngClass]="{ 'transparant': navTransparant }">
+    <i class="icon fa-solid fa-bars" *ngIf="!isMobileMenuOpen" (click)="openMobileMenu()"></i>
+    <i class="icon fa-regular fa-circle-xmark" *ngIf="isMobileMenuOpen" (click)="closeMobileMenu()"></i>
+  
+    <div class="mobile-menu" *ngIf="isMobileMenuOpen" [@menu]>
+      <a class="menu-item" *ngFor="let navItem of navItems" (click)="navigate(navItem.title)">{{ navItem.title| uppercase }}</a>
+    </div>
   </div>
-</div>
+} @else {
+  <div class="desktop-nav-wrapper" [ngClass]="{ 'color-white' : navTransparant }">
+    <a
+      *ngFor="let navItem of navItems"
+      class="menu-item"
+      [ngClass]="{ 'active': navItem.isActive, 'last-active': navItem.lastActive }"
+      (click)="navigate(navItem.title)">{{ navItem.title| uppercase }}
+    </a>
+  </div>
+}
