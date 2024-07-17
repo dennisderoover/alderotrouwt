@@ -4,6 +4,11 @@
   src: url(assets/fonts/Crimson_Foam_Font.otf) format("opentype");
 }
 
+html {
+  touch-action: pan-x pan-y;
+  height: 100% 
+}
+
 html, body {
   background-color: #FEF6E9;
   color: #945030;
