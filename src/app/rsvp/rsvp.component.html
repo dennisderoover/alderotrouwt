@@ -8,7 +8,7 @@
 
   <form [formGroup]="form">
     <div class="first-name">
-      <label for="firstName">
+      <label class="aldero-label" for="firstName">
         Voornaam
       </label>
       <input
@@ -19,7 +19,7 @@
       >
     </div>
     <div class="last-name">
-      <label for="lastName">
+      <label class="aldero-label" for="lastName">
         Achternaam
       </label>
       <input
@@ -29,6 +29,26 @@
         type="text"
       >
     </div>
+    @if (form.hasError('invitationNotFound')) {
+      <div class="error">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        <p>Geen uitnodiging voor <span class="bold">{{notFoundCredentials}}</span> gevonden!</p>
+      </div>
+    }
+  
+    @if (form.hasError('brideNameEntered')) {
+      <div class="error">
+        <i class="fa-solid fa-circle-exclamation"></i> 
+        <p><span class="bold">{{notFoundCredentials}}</span> is de bruid! Uiteraard is ze aanwezig!</p>
+      </div>
+    }
+  
+    @if (form.hasError('groomNameEntered')) {
+      <div class="error">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        <p><span class="bold">{{notFoundCredentials}}</span> is de bruidegom! Uiteraard is hij aanwezig!</p>
+      </div>
+    }
     <button
       class="aldero-button primary"
       [disabled]="form.invalid || isLoading"
@@ -39,6 +59,99 @@
     </button>
   </form>
 </section>
+
+<!-- ALREADY ANSWERED -->
+<section *ngIf="showAlreadyAnswered">
+  <aldero-subtitle
+    title="Let op!"
+    [subtitle]="'We hebben al een RSVP van ' + (attendances.length > 1 ? 'jullie' : 'jou') + ' gekregen.'"
+  ></aldero-subtitle>
+
+  @for (guest of rsvpService.currentHousehold; track $index) {
+    <div class="personal-planning">
+      <h4 class="bold">{{ guest.firstName + ' ' + guest.lastName }}</h4>
+      @for (event of guest.invitedFor; track $index) {
+        @switch (event) {
+          @case (eActivity.ANTWERP) {
+            <div class="event">
+              @if (attendingEvent(eActivity.ANTWERP, guest.attending)) {
+                <i class="fa-regular fa-circle-check"></i>
+              } @else {
+                <i class="fa-regular fa-circle-xmark"></i>
+              }
+              <div class="event-info">
+                <span class="event-title bold">Burgerlijke trouw</span>
+                <span class="event-location">Stadhuis Antwerpen</span>
+              </div>
+              <span class="event-time">11u00</span>
+            </div>
+          }
+          @case (eActivity.CEREMONY) {
+            <div class="event">
+              @if (attendingEvent(eActivity.CEREMONY, guest.attending)) {
+                <i class="fa-regular fa-circle-check"></i>
+              } @else {
+                <i class="fa-regular fa-circle-xmark"></i>
+              }
+              <div class="event-info">
+                <span class="event-title bold">Ceremonie en Receptie</span>
+                <span class="event-location">Hof Van Riemen</span>
+              </div>
+              <span class="event-time">15u30 - 19u00</span>
+            </div>
+          }
+          @case (eActivity.DINER) {
+            <div class="event">
+              @if (attendingEvent(eActivity.DINER, guest.attending)) {
+                <i class="fa-regular fa-circle-check"></i>
+              } @else {
+                <i class="fa-regular fa-circle-xmark"></i>
+              }
+              <div class="event-info">
+                <span class="event-title bold">Diner</span>
+                <span class="event-location">Hof Van Riemen</span>
+              </div>
+              <span class="event-time">19u00 - 21u00</span>
+            </div>
+          }
+          @case (eActivity.PARTY) {
+            <div class="event">
+              @if (attendingEvent(eActivity.PARTY, guest.attending)) {
+                <i class="fa-regular fa-circle-check"></i>
+              } @else {
+                <i class="fa-regular fa-circle-xmark"></i>
+              }
+              <div class="event-info">
+                <span class="event-title bold">Party Time</span>
+                <span class="event-location">Hof Van Riemen</span>
+              </div>
+              <span class="event-time">21u00</span>
+            </div>
+          }
+        }
+      }
+    </div>
+  }
+
+  <div class="actions">
+    <button
+      class="aldero-button primary"
+      (click)="goToNextActivity(eActivity.ANTWERP)"
+    >
+      <span *ngIf="!isLoading">Pas aanwezigheden aan</span>
+      <i *ngIf="isLoading" class="fa-solid fa-spinner fa-spin"></i>
+    </button>
+  
+    <button
+      class="aldero-button outlined-primary"
+      [routerLink]="['/locatie']"
+    >
+      <span *ngIf="!isLoading">Waar is dat feestje?</span>
+      <i *ngIf="isLoading" class="fa-solid fa-spinner fa-spin"></i>
+    </button>
+  </div>
+</section>
+<!-- END ALREADY ANSWERED -->
 
 <!-- ANTWERP -->
 <section *ngIf="showAntwerp">
@@ -188,11 +301,45 @@
 </section>
 <!-- END PARTY -->
 
+<!-- QUESTIONS OR REMARKS -->
+@if (showQuestionsOrRemarks) {
+  <section>
+    <aldero-subtitle
+      title="Nog iets dat je kwijt wil?"
+      subtitle="Vul hier je vragen of opmerkingen (bv: vegetarisch, allergieën, ...) in, zodat we hier rekenening mee kunnen houden."
+    ></aldero-subtitle>
+
+    <div class="remarks">
+      <label class="aldero-label" for="remarks">
+        Vragen of opmerkingen
+      </label>
+      <textarea
+        #remarks
+        [formControl]="form.controls.remarks"
+        class="aldero-input"
+        rows="10"
+      ></textarea>
+    </div>
+    
+    <button
+      class="aldero-button primary"
+      [disabled]="isLoading"
+      (click)="submitAttendances()"
+    >
+      <span *ngIf="!isLoading">Verstuur RSVP</span>
+      <i *ngIf="isLoading" class="fa-solid fa-spinner fa-spin"></i>
+    </button>
+  </section>
+}
+
 <section *ngIf="showEndComing">
   <aldero-subtitle
-    title="Bedankt voor het invullen!"
-    subtitle="We kijken uit naar je komst."
+    [title]="'Super leuk dat ' + (attendances.length > 1 ? 'jullie' : 'je') + ' erbij ' + (attendances.length > 1 ? 'zijn' : 'bent') + '!'"
+    [subtitle]="'We kijken uit naar ' + (attendances.length > 1 ? 'jullie' : 'je') + ' komst.'"
   ></aldero-subtitle>
+
+  <!-- Replace with correct photo -->
+  <img src="assets/images/joepie.jpeg" alt="aldero-happy">
 
   <button
     class="aldero-button primary"
@@ -206,7 +353,11 @@
   <aldero-subtitle
     title="Bedankt voor het invullen!"
     subtitle="Jammer dat je er niet bij kan zijn."
+    [subtitle]="'Jammer dat ' + (attendances.length > 1 ? 'jullie' : 'je') + ' er niet bij ' + (attendances.length > 1 ? 'kunnen zijn.' : 'kan zijn.')"
   ></aldero-subtitle>
+
+  <!-- Replace with correct photo -->
+  <img src="assets/images/jammer.jpeg" alt="aldero-sad">
 
   <button
     class="aldero-button primary"

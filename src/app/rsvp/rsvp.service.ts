@@ -19,7 +19,9 @@ export class RSVPService {
     return this._httpClient.get<Guest[]>(url).pipe(
       map((guests: Guest[]) => guests.filter((guest: Guest) => guest.householdId)),
       map((guests: Guest[]) => {
-        const householdId = guests.find((guest: Guest) => guest.firstName === credentials.firstName && guest.lastName === credentials.lastName)?.householdId
+        const householdId = guests.find((guest: Guest) => 
+          guest.firstName.toLowerCase() === credentials.firstName.toLowerCase() &&
+          guest.lastName.toLowerCase() === credentials.lastName.toLowerCase())?.householdId
         
         return guests.filter((guest: Guest) => guest.householdId === householdId);
         }),

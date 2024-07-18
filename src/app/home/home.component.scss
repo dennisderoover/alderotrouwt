@@ -54,7 +54,6 @@ img {
 
     img {
       position: unset;
-      width: auto;
     }
   }
 
@@ -62,8 +61,8 @@ img {
     margin: 0;
     position: absolute;
     top: 50%;
-    right: 140px;
-    transform: translateY(-50%);
+    right: 25%;
+    transform: translate(50%, -50%);
     width: 576px;
     padding: 30px;
 

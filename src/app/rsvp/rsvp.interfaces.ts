@@ -1,9 +1,15 @@
+export type Attending = {
+  [event in 'antwerp' | 'ceremony' | 'diner' | 'party']: boolean;
+};
+
 export interface Guest {
   id: number;
   firstName: string;
   lastName: string;
   householdId: number;
   invitedFor: Activity[];
+  alreadyReplied: boolean;
+  attending: Attending[];
 }
 
 export interface Credentials {
@@ -17,6 +23,7 @@ export interface Attendance {
   ceremony?: SelectionAnswer;
   diner?: SelectionAnswer;
   party?: SelectionAnswer;
+  remarks?: string;
 }
 
 export interface LoadingState<T = unknown> {
