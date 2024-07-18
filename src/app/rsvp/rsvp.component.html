@@ -338,7 +338,6 @@
     [subtitle]="'We kijken uit naar ' + (attendances.length > 1 ? 'jullie' : 'je') + ' komst.'"
   ></aldero-subtitle>
 
-  <!-- Replace with correct photo -->
   <img src="assets/images/joepie.jpeg" alt="aldero-happy">
 
   <button
@@ -351,18 +350,9 @@
 
 <section *ngIf="showEndNotComing">
   <aldero-subtitle
-    title="Bedankt voor het invullen!"
-    subtitle="Jammer dat je er niet bij kan zijn."
-    [subtitle]="'Jammer dat ' + (attendances.length > 1 ? 'jullie' : 'je') + ' er niet bij ' + (attendances.length > 1 ? 'kunnen zijn.' : 'kan zijn.')"
+    title="Oh dat is spijtig!"
+    [subtitle]="'Suuuper jammer dat ' + (attendances.length > 1 ? 'jullie' : 'je') + ' er niet bij ' + (attendances.length > 1 ? 'kunnen zijn.' : 'kan zijn') + ', maar we zien elkaar snel terug!'"
   ></aldero-subtitle>
 
-  <!-- Replace with correct photo -->
   <img src="assets/images/jammer.jpeg" alt="aldero-sad">
-
-  <button
-    class="aldero-button primary"
-    [routerLink]="['/home']"
-  >
-    Terug naar begin
-  </button>
 </section>
